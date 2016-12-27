@@ -1,8 +1,20 @@
 import React from 'react';
+import Speaker from './Speaker.js';
 
-function SpeakerList() {
+const SpeakerList = (props) => {
+  const speakersDetails = props.speakers.map((speaker) => {
+    return (
+      <Speaker speaker={speaker} key={speaker.id}/>
+    )
+  })
+
   return (
-    <h2>SpeakerList</h2>
+    <div className="speaker-container">
+      <h3>Speaker List</h3>
+      <ul className="speaker-list">
+        { speakersDetails }
+      </ul>
+    </div>
   )
 }
 

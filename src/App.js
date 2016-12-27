@@ -10,6 +10,35 @@ import RegistrationForm from "./components/RegistrationForm.js";
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      speakers: [
+        {
+          id: 1,
+          name: 'Speaker 1',
+          technologies: ['React', 'Angular', 'Node'],
+          topics: ['Front End Development', 'Responsive Design'],
+          contact: 'speaker1@test.com',
+          social: [
+            { twitter: '@speaker1'}
+          ]
+        },
+        {
+          id: 2,
+          name: 'Speaker 2',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
+        }
+      ]
+    }
+  }
+
+
   render() {
     return (
       <main>
@@ -18,7 +47,7 @@ class App extends Component {
           <Intro />
           <Search />
           <Map />
-          <SpeakerList />
+          <SpeakerList { ...this.state }/>
           <RegistrationForm />
         </div>
         <Footer />

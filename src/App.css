@@ -91,3 +91,15 @@ footer {
     text-align: right;
   }
 }
+
+@media screen and (min-width: 767px) {
+  .speaker-details {
+    display: flex;
+  }
+
+  .speaker-details li {
+    padding: .5rem;
+    flex: 1 0 25%;
+    border: 1px solid #ccc;
+  }
+}
