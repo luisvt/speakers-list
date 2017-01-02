@@ -81,6 +81,10 @@ footer {
   text-align: center;
 }
 
+img.footerlogo {
+    max-height: 85px;
+}
+
 .contact {
   color: #fff;
 }
