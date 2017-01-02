@@ -15,7 +15,6 @@ class App extends Component {
     this.state = {
       speakers: [
         {
-          id: 1,
           name: 'Speaker 1',
           technologies: ['React', 'Angular', 'Node'],
           topics: ['Front End Development', 'Responsive Design'],
@@ -25,7 +24,6 @@ class App extends Component {
           ]
         },
         {
-          id: 2,
           name: 'Speaker 2',
           technologies: ['PHP', 'SQL'],
           topics: ['Database Topics', 'Server Topics'],
@@ -33,7 +31,107 @@ class App extends Component {
           social: [
             { twitter: '@speaker2'}
           ]
+        },
+        {
+          name: 'Speaker 3',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
+        },
+        {
+          name: 'Speaker 4',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
+        },
+        {
+          name: 'Speaker 5',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
+        },
+        {
+          name: 'Speaker 6',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
+        },
+        {
+          name: 'Speaker 7',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
+        },
+        {
+          name: 'Speaker 8',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
+        },
+        {
+          name: 'Speaker 9',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
+        },
+        {
+          name: 'Speaker 10',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
+        },
+        {
+          name: 'Speaker 11',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
+        },
+        {
+          name: 'Speaker 12',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
+        },
+        {
+          name: 'Speaker 13',
+          technologies: ['PHP', 'SQL'],
+          topics: ['Database Topics', 'Server Topics'],
+          contact: 'speaker2@test.com',
+          social: [
+            { twitter: '@speaker2'}
+          ]
         }
+
       ]
     }
   }

@@ -1,12 +1,13 @@
 
 import React from 'react';
 
-function Intro() {
+const Intro = () => {
   return (
     <section>
-      <h1>Speaker List</h1>
-      <p>Dragée cotton candy tart cupcake halvah oat cake chocolate bar. Tootsie roll gummies liquorice tootsie roll gingerbread croissant icing cookie tart. Gingerbread tart sugar plum pudding chocolate cake. Tiramisu candy halvah sweet chocolate cake. Oat cake cookie halvah jelly-o apple pie cotton candy sweet roll topping chocolate cake. Sesame snaps brownie halvah bonbon liquorice pudding muffin pie. Apple pie gummi bears powder macaroon chocolate cake. Gingerbread carrot cake lemon drops caramels croissant soufflé toffee wafer. Bear claw croissant pudding marzipan danish tootsie roll caramels croissant.</p>
-      <p>Dessert cookie chocolate bar sugar plum cotton candy chupa chups bonbon wafer. Wafer powder tootsie roll pastry gingerbread sweet caramels soufflé jujubes. Topping oat cake danish. Cake pie wafer icing lemon drops jelly beans gummi bears. Topping marzipan cupcake pastry. Sugar plum icing croissant caramels dessert jelly beans carrot cake lemon drops. Ice cream chocolate cake muffin. Icing macaroon cake croissant. Bonbon chocolate sweet roll.</p>
+      <h1>Speaker List for Broward County</h1>
+      <p>In a relatively young tech scene like South Florida it's important to create an environment where tech professionals can network, learn and share knowledge. That's why Code for Fort Lauderdale is putting together this list of individuals interested in speaking at local tech events.</p>
+      <p>To add your name to the list either fork the GitHub repository or contact Code for Fort Lauderdale. And don't be shy - we're interested in hearing what you have to say whether you're a seasoned pro or are still new to the tech community.</p>
+      <p>We'd like to thank <a href="http://wespeaktoo.org/">We Speak Too</a> for the inspiration to start this list. If you can think of any ways to improve the list, we'd love to hear your suggestions.</p>
     </section>
   )
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Footer() {
+const Footer = () => {
   return (
     <footer>
-      <div className="logo">
-        <img src="http://placehold.it/100x50" alt="Code for Fort Lauderdale logo" />
+      <div className="footer-logo">
+        <img src={require('../Code4FtlLogo.png')} className="logo"/>
       </div>
       <div className="contact">
         <p>Contact Code for Fort Lauderdale</p>

@@ -9,21 +9,31 @@ html {
 ul {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 a {
   text-decoration: none;
+  color: #c8263f;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway', sans-serif;
   font-weight: 700;
 }
+
+main {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
 .compent-wrapper {
   max-width: 1060px;
   width: 100%;
   margin: 0 auto;
   padding: 1rem;
+  flex: 1;
 }
 
 nav, footer {
@@ -31,25 +41,31 @@ nav, footer {
 }
 .navbar {
   display: flex;
-  /*background: #3a9ed7;*/
-  align-items: center;
   flex-wrap: wrap;
 }
 
 .navbar li {
-  /*width: 15%;*/
   flex: 1 0 100%;
   padding: 1rem;
   text-align: center;
   color: #fff;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar li:hover {
   background: #c8263f;
+  cursor: pointer;
 }
 
 .nav-logo {
   margin-right: auto;
+}
+
+.logo {
+  max-height: 50px;
 }
 
 footer {
@@ -60,30 +76,25 @@ footer {
   padding: 1rem;
 }
 
-.logo, .contact {
+.footer-logo, .contact {
   flex: 1 0 100%;
-  border: 1px solid #ccc;
   text-align: center;
 }
 
 .contact {
-
+  color: #fff;
 }
 
 @media screen and (min-width: 500px) {
-  .navbar {
-    padding-left: .5rem;
+  .navbar li {
+    flex: 1 0 auto;
   }
 
-  .navbar li{
-    flex: 1 0 15%;
-  }
-
-  .logo, .contact {
+  .footer-logo, .contact {
     flex: 1 0 50%;
   }
 
-  .logo {
+  .footer-logo {
     text-align: left;
   }
 
@@ -101,5 +112,10 @@ footer {
     padding: .5rem;
     flex: 1 0 25%;
     border: 1px solid #ccc;
+  }
+
+  .tech,
+  .topic {
+    margin: .2rem;
   }
 }

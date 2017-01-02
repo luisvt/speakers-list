@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Map() {
+const Map = () => {
   return (
     <h2>Map</h2>
   )
