@@ -29,11 +29,11 @@ main {
 }
 
 .compent-wrapper {
-  max-width: 1000px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 1rem;
-  flex: 1;
+    max-width: 932px;
+    width: 100%;
+    margin: 75px auto;
+    padding: 1rem;
+    flex: 1;
 }
 
 .container {
