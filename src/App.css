@@ -70,13 +70,13 @@ main {
   /* top: 10px; */
   color: black;
   display: none;
-  margin: 58px -16px;
+  margin: 68px -16px;
   text-decoration: none;
   font-family: Arial, sans-serif;
   font-weight: 100;
   font-size: 17px;
   text-transform: uppercase;
-  background: #027ec5;
+  /*background: #027ec5;*/
   padding: 24px;
   width: 127px;
   text-align: left;
@@ -141,7 +141,7 @@ header, footer {
 .logo {
     max-height: 80px;
     float: right;
-    margin: 16px 9px 0px 0px;
+    margin: 6px 9px 0px 0px;
 }
 
 footer {
