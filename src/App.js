@@ -4,7 +4,6 @@ import Nav from "./components/Nav.js";
 import Footer from "./components/Footer.js";
 import Intro from "./components/Intro.js";
 import SpeakerList from "./components/SpeakerList.js";
-import Map from "./components/Map.js";
 import Search from "./components/Search.js";
 import RegistrationForm from "./components/RegistrationForm.js";
 
@@ -13,6 +12,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      search: "",
       speakers: [
         {
           name: 'Speaker 1',
@@ -133,9 +133,12 @@ class App extends Component {
         }
 
       ]
-    }
+    };
   }
 
+  handleUserInput(search) {
+    this.setState({ search });
+  }
 
   render() {
     return (
@@ -143,8 +146,7 @@ class App extends Component {
         <Nav />
         <div className="compent-wrapper">
           <Intro />
-          <Search />
-          <Map />
+          <Search search={this.state.search}    onUserInput={this.handleUserInput.bind(this)}/>
           <SpeakerList { ...this.state }/>
           <RegistrationForm />
         </div>

@@ -2,8 +2,12 @@ import React from 'react';
 import Speaker from './Speaker.js';
 
 const SpeakerList = (props) => {
-  const speakersDetails = props.speakers.map((speaker, index) => {
+  let filteredList = props.speakers.filter(
+    (speaker) => speaker.name.toLowerCase().indexOf(props.search.toLowerCase()) !== -1
 
+  );
+
+  const speakersDetails = filteredList.map((speaker, index) => {
     const tech = speaker.technologies.map((tech) =>
         <p key={tech} className="tech">{tech}</p>
     )
