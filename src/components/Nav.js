@@ -3,7 +3,7 @@ import React from 'react';
 const Nav = () => {
   return (
     <header>
-      <a className="hamburger-container">
+      <div className="hamburger-container">
       	<div className="top"></div>
     		<div className="middle"></div>
         <div className="bottom"></div>
@@ -12,9 +12,9 @@ const Nav = () => {
       		<a href="#"> <li>Home</li></a>
           <a href="#"> <li>Search</li></a>
       		<a href="#"> <li>Speakers</li></a>
-      		<a href="#"> <li>Contact</li></a>
+      		<a href="#contact"> <li>Contact</li></a>
         </ul>
-      </a>
+      </div>
       <img src={require('../Code4FtlLogo.png')} className="logo"/>
     </header>
   )

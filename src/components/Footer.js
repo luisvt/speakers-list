@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer>
+    <footer id="contact">
       <div className="footer-logo">
         <img src={require('../Code4FtlLogo.png')} className="footerlogo"/>
       </div>

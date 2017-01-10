@@ -3,8 +3,14 @@ import Speaker from './Speaker.js';
 
 const SpeakerList = (props) => {
   let filteredList = props.speakers.filter(
-    (speaker) => speaker.name.toLowerCase().indexOf(props.search.toLowerCase()) !== -1
-
+    (speaker) => {
+      if (speaker.name.toLowerCase().indexOf(props.search.toLowerCase()) !== -1 ||
+          speaker.contact.toLowerCase().indexOf(props.search.toLowerCase()) !== -1 ||
+          speaker.technologies.join().toLowerCase().indexOf(props.search.toLowerCase()) !== -1 ||
+          speaker.topics.join().toLowerCase().indexOf(props.search.toLowerCase()) !== -1 ) {
+        return true;
+      }
+    }
   );
 
   const speakersDetails = filteredList.map((speaker, index) => {
@@ -22,8 +28,8 @@ const SpeakerList = (props) => {
   })
 
   return (
-    <div className="speaker-container">
-      <h2>Speakers</h2>
+    <section className="speaker-container bottom-margin">
+      <h2>Available Speakers</h2>
       <ul className="speaker-list">
         <li>
           <ul className="speaker-details table-header">
@@ -35,7 +41,7 @@ const SpeakerList = (props) => {
         </li>
         { speakersDetails }
       </ul>
-    </div>
+    </section>
   )
 }
 

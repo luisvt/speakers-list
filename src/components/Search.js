@@ -8,10 +8,13 @@ class Search extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Search by name</h2>
-        <input type="text" value={this.props.search} onChange={this.handleChange.bind(this)}/>
-      </div>
+      <section className="search">
+        <form>
+          <label htmlFor="search" className="ir">Search: </label>
+          <input type="text" id="search" value={this.props.search} onChange={this.handleChange.bind(this)}/>
+          <button className="button1">Search</button>
+        </form>
+      </section>
     )
   }
 }

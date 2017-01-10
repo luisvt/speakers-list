@@ -22,6 +22,27 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
+.ir {
+  font-size: 0;
+}
+
+.bottom-margin {
+  margin-bottom: 2.5rem;
+}
+
+input[type="text"] {
+  padding: 10px 7px;
+  min-width: 300px;
+}
+
+.button1 {
+  background: #413a3a;
+  padding: 11px 16px;
+  border: 0;
+  color: #fff;
+  font-size: .8rem;
+}
+
 main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -33,6 +54,7 @@ main {
           flex-direction: column;
 }
 
+/* Container */
 .compent-wrapper {
     max-width: 932px;
     width: 100%;
@@ -43,16 +65,62 @@ main {
             flex: 1;
 }
 
+/* Header & Footer */
+
+header {
+  position: fixed;
+  width: 100%;
+}
+
+header, footer {
+  background: #027ec5;
+}
+
+.logo {
+  max-height: 80px;
+  float: right;
+  margin: 6px 9px 0px 0px;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  position:fixed;
+  bottom:0px;
+  width:100%;
+}
+
+.footer-logo, .contact {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
+  text-align: center;
+}
+
+.footerlogo {
+  max-height: 85px;
+}
+
+.contact {
+  color: #fff;
+}
+
+/* Menu */
 .hamburger-container {
-	/*margin: 0;*/
 	position: fixed;
 	overflow: hidden;
 	width: 70px;
 	height: 100px;
 	overflow: auto;
   margin-left: .7em;
-	/*right: calc(100% - 100px);*/
-	/*top: 20px;*/
 }
 
 .top, .middle, .bottom{
@@ -75,8 +143,6 @@ main {
 
 .menu {
   position: fixed;
-  /* right: calc(100% - 292px); */
-  /* top: 10px; */
   color: black;
   display: none;
   margin: 68px -16px;
@@ -85,7 +151,6 @@ main {
   font-weight: 100;
   font-size: 17px;
   text-transform: uppercase;
-  /*background: #027ec5;*/
   padding: 24px;
   min-width: 160px;
   text-align: left;
@@ -139,48 +204,14 @@ main {
 	-webkit-animation-delay: 400ms;
 }
 
-header {
-    position: fixed;
-    width: 100%;
+/* Search */
+
+.search {
+  text-align: right;
 }
 
-header, footer {
-  background: #027ec5;
-}
+/* Speakers List */
 
-.logo {
-    max-height: 80px;
-    float: right;
-    margin: 6px 9px 0px 0px;
-}
-
-footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  border: 1px solid #ccc;
-  padding: 1rem;
-}
-
-.footer-logo, .contact {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 100%;
-          flex: 1 0 100%;
-  text-align: center;
-}
-
-img.footerlogo {
-    max-height: 85px;
-}
-
-.contact {
-  color: #fff;
-}
 
 @media screen and (min-width: 500px) {
   .navbar li {

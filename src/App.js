@@ -6,6 +6,7 @@ import Intro from "./components/Intro.js";
 import SpeakerList from "./components/SpeakerList.js";
 import Search from "./components/Search.js";
 import RegistrationForm from "./components/RegistrationForm.js";
+import axios from "axios";
 
 
 class App extends Component {
@@ -17,121 +18,57 @@ class App extends Component {
         {
           name: 'Speaker 1',
           technologies: ['React', 'Angular', 'Node'],
-          topics: ['Front End Development', 'Responsive Design'],
-          contact: 'speaker1@test.com',
-          social: [
-            { twitter: '@speaker1'}
-          ]
+          topics: ['Front End Development', 'Responsive Design', 'Accessibility'],
+          contact: 'speaker1@test.com'
         },
         {
           name: 'Speaker 2',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
+          technologies: ['Tableau'],
+          topics: ['Data Visualization', 'Tableau'],
+          contact: 'speaker2@test.com'
         },
         {
           name: 'Speaker 3',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
+          technologies: ['D3', 'Python', 'R'],
+          topics: ['Database', 'Data Analytics', 'Data Visualization'],
+          contact: 'speaker3@test.com'
         },
         {
           name: 'Speaker 4',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
+          technologies: ['Python', 'C++', 'JavaScript'],
+          topics: ['Data Science', 'Computational Science'],
+          contact: 'speaker4@test.com'
         },
         {
           name: 'Speaker 5',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
+          technologies: ['HTML', 'CSS', 'Sass', 'JavaScript'],
+          topics: ['UI', 'UX'],
+          contact: 'speaker5@test.com'
         },
         {
           name: 'Speaker 6',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
+          technologies: [],
+          topics: ['Mentoring', 'Negotiation', 'Public Speaking'],
+          contact: 'speaker6@test.com'
         },
         {
           name: 'Speaker 7',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
+          technologies: ['Ruby', 'Rails'],
+          topics: ['Back End'],
+          contact: 'speaker7@test.com'
         },
         {
           name: 'Speaker 8',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
+          technologies: ['JavaScript', 'Python', 'Django', 'Rails'],
+          topics: ['Full Stack Development', 'UX'],
+          contact: 'speaker8@test.com'
         },
         {
           name: 'Speaker 9',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
-        },
-        {
-          name: 'Speaker 10',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
-        },
-        {
-          name: 'Speaker 11',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
-        },
-        {
-          name: 'Speaker 12',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
-        },
-        {
-          name: 'Speaker 13',
-          technologies: ['PHP', 'SQL'],
-          topics: ['Database Topics', 'Server Topics'],
-          contact: 'speaker2@test.com',
-          social: [
-            { twitter: '@speaker2'}
-          ]
+          technologies: ['Scala', 'R', 'JavaScript', 'Python'],
+          topics: ['Data Science', 'Cybersecurity'],
+          contact: 'speaker9@test.com'
         }
-
       ]
     };
   }
@@ -148,7 +85,6 @@ class App extends Component {
           <Intro />
           <Search search={this.state.search}    onUserInput={this.handleUserInput.bind(this)}/>
           <SpeakerList { ...this.state }/>
-          <RegistrationForm />
         </div>
         <Footer />
       </main>
