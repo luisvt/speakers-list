@@ -8,14 +8,14 @@ const routes: Routes = [
   {
     path: 'propose-topic', loadChildren: './pages/topic-form/topic-form.module#TopicFormPageModule',
     canActivate: [NgxPermissionsGuard],
-    data: {permissions: {only: ['ADMIN', 'SPEAKER']}}
+    data: {permissions: {only: ['ADMIN', 'SPEAKER'], redirectTo: '/home'}}
   },
   {path: 'login', loadChildren: './pages/login/login.module#LoginPageModule'},
   {path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule'},
   {
     path: 'users', loadChildren: './pages/users/users.module#UsersPageModule',
     canActivate: [NgxPermissionsGuard],
-    data: {permissions: {only: 'ADMIN'}}
+    data: {permissions: {only: 'ADMIN', redirectTo: '/home'}},
   },
 ];
 
