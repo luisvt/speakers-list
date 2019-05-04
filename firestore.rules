@@ -1,7 +1,52 @@
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write;
+
+    function isSignedIn() {
+      return request.auth != null && request.auth.uid != null;
     }
+
+    function getDocument(documentPath) {
+    	return get(/databases/$(database)/documents/$(documentPath));
+    }
+
+    function hasRole(role) {
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid))
+      				&& get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == role;
+    }
+
+    match /{document=**} {
+      allow read, write: if hasRole('ADMIN');
+    }
+
+  	match /users/{userId} {
+  		allow read: if isSignedIn() && userId == request.auth.uid
+      allow update: if isSignedIn()
+      								&& user == request.auth.uid
+                      && request.resource.data.email == resource.data.email
+                      && request.resource.data.role == resource.data.role;
+
+			allow create: if isSignedIn()
+      								 && user == request.auth.uid
+                       && request.resource.data.role == 'SPEAKER'
+                       && request.auth.token.email == request.resource.data.email;
+  	}
+
+    match /topics/{topicId} {
+      function isValidTopic(topic) {
+				return topic.title != null && topic.title is string && topic.title != ''
+        				&& topic.description != null && topic.description is string && topic.description != '';
+      }
+
+    	allow read: if true;
+
+      allow create: if isSignedIn()
+      								&& isValidTopic(request.resource.data)
+
+      allow update: if isSignedIn()
+      								&& isValidTopic(request.resource.data)
+                      && request.auth.uid == resource.data.createdBy
+
+    }
+
   }
 }
