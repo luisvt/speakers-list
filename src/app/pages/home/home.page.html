@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Proposed Topics
+    </ion-title>
+    <!--    <ion-buttons slot="end">-->
+    <!--      <ion-button><ion-icon name="search"></ion-icon></ion-button>-->
+    <!--    </ion-buttons>-->
+    <ion-buttons slot="end">
+      <ion-button routerLink="/propose-topic">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-searchbar></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar>
+      <ion-label>
+        <h2>Introduction to Ionic</h2>
+        <p>Presenter: Luis Vargas</p>
+        <p>Votes: 10</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="primary">
+          <ion-icon name="thumbs-up" size="large"></ion-icon>
+        </ion-button>
+        <ion-button color="medium">
+          <ion-icon name="thumbs-down" size="large"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>

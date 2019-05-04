@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form (submit)="login()" (keydown.enter)="login()">
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input name="email" [(ngModel)]="credentials.email" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password:</ion-label>
+      <ion-input name="password" [(ngModel)]="credentials.password" required minlength="6"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" margin-top>Login</ion-button>
+    <ion-button expand="block" margin-top color="tertiary">
+      <ion-icon name="logo-google" slot="start"></ion-icon>Login with Google
+    </ion-button>
+    <ion-button expand="block" fill="outline" margin-top routerLink="/register">Register</ion-button>
+  </form>
+</ion-content>
