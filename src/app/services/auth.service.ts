@@ -3,8 +3,8 @@ import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { filter, flatMap, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { flatMap, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import { User } from '../models/user';
 import GoogleAuthProvider = auth.GoogleAuthProvider;
 import AuthProvider = auth.AuthProvider;
@@ -14,20 +14,21 @@ import AuthProvider = auth.AuthProvider;
 })
 export class AuthService {
 
-  get user(): Observable<User> {
+  get user$(): Observable<User> {
     return this.afAuth.user.pipe(
-      filter(user => !!user),
-      flatMap(user => this.afs.doc<User>(`users/${user.uid}`).snapshotChanges()),
-      map(a => {
-        const item = a.payload.data();
-        item.uid = a.payload.id;
-        return item;
-      }));
+      flatMap(user =>
+        user && this.afs.doc<User>(`users/${user.uid}`).snapshotChanges()
+          .pipe(map(a => {
+              const item = a.payload.data();
+              item.uid = a.payload.id;
+              return item;
+            })
+          )
+        || of(null)));
   }
 
   constructor(private afAuth: AngularFireAuth,
-              private afs: AngularFirestore,
-              private router: Router) {
+              private afs: AngularFirestore) {
   }
 
   private oAuthLogin(provider: AuthProvider) {
@@ -50,12 +51,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  isLoggedIn(): Observable<boolean> {
-    return this.afAuth.user.pipe(map(user => !!user));
-  }
-
-  logout(): void {
-    this.afAuth.auth.signOut()
-      .then(() => this.router.navigate(['login']));
+  logout() {
+    return this.afAuth.auth.signOut();
   }
 }

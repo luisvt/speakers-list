@@ -22,8 +22,17 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    console.log('this.credentials: ', this.credentials);
+  async login() {
+    try {
+      await this.authService.signInWithEmail(this.credentials.email, this.credentials.password);
+    } catch (err) {
+      (await this.toastCtrl.create({
+        message: err.message,
+        color: 'danger',
+        position: 'top',
+        duration: 5000
+      })).present();
+    }
   }
 
   async loginWithGoogle() {
@@ -31,7 +40,12 @@ export class LoginPage implements OnInit {
       await this.authService.signInWithGoogle();
       this.router.navigate(['']);
     } catch (err) {
-      (await this.toastCtrl.create({message: err.message})).present();
+      (await this.toastCtrl.create({
+        message: err.message,
+        color: 'danger',
+        position: 'middle',
+        duration: 5000
+      })).present();
     }
   }
 
