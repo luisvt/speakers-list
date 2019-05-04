@@ -9,14 +9,14 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let user of users$ | async">
       <ion-avatar slot="start">
-        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        <img [src]="user.photoUrl || 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
       </ion-avatar>
       <ion-label>
-        <h1>Luis Vargas</h1>
-        <h2>Software Developer</h2>
-        <p>luisvargastijerino@gmail.com</p>
+        <h1>{{user.name}}</h1>
+        <h2>{{user.description}}</h2>
+        <p>{{user.email}}</p>
       </ion-label>
     </ion-item>
   </ion-list>

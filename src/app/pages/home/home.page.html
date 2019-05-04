@@ -20,14 +20,14 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
-      <ion-avatar slot="start">
-        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-      </ion-avatar>
+    <ion-item *ngFor="let topic of topics$ | async">
+      <ion-thumbnail slot="start">
+        <img [src]="topic.photoUrl || 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
+      </ion-thumbnail>
       <ion-label>
-        <h2>Introduction to Ionic</h2>
-        <p>Presenter: Luis Vargas</p>
-        <p>Votes: 10</p>
+        <h2>{{topic.title}}</h2>
+        <p>{{topic.description}}</p>
+        <p>Votes: {{topic.positiveVotes?.length - topic.negativeVotes?.length}}</p>
       </ion-label>
       <ion-buttons slot="end">
         <ion-button color="primary">

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Topic } from '../../models/topic';
+import { TopicsService } from '../../services/topics.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-topic-form',
@@ -7,17 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopicFormPage implements OnInit {
 
-  model = {
-    title: '',
-    description: ''
-  };
+  model: Topic = {};
 
-  constructor() { }
+  constructor(private topicsSvc: TopicsService,
+              private navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
-  save() {
-    console.log('this.model: ', this.model);
+  async save() {
+    try {
+      await this.topicsSvc.save(this.model);
+      this.navCtrl.back();
+    } catch (e) {
+      console.log('e: ', e);
+    }
   }
 }

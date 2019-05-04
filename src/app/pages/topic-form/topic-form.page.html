@@ -7,17 +7,21 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding-end>
-  <form (submit)="save()" (keydown.enter)="save()">
+<ion-content padding>
+  <form #form="ngForm" (submit)="save()" (keydown.enter)="save()">
     <ion-item>
       <ion-label position="floating">Title:</ion-label>
-      <ion-input name="title" [(ngModel)]="model.title"></ion-input>
+      <ion-input name="title" [(ngModel)]="model.title" required minlength="1" maxlength="50"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Photo Url:</ion-label>
+      <ion-input name="photoUrl" [(ngModel)]="model.photoUrl"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Description:</ion-label>
-      <ion-input name="description" [(ngModel)]="model.description"></ion-input>
+      <ion-textarea name="description"  [(ngModel)]="model.description" required rows="5" maxlength="120"></ion-textarea>
     </ion-item>
 
-    <ion-button type="submit" expand="block" margin-top margin-start>Save</ion-button>
+    <ion-button type="submit" expand="block" margin-top [disabled]="form.invalid">Save</ion-button>
   </form>
 </ion-content>
