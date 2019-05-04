@@ -12,9 +12,9 @@ import { User } from './models/user';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  public appPages = [
+  appPages = [
     {title: 'Home', url: '/home', icon: 'home'},
-    {title: 'Users', url: '/users', icon: 'people'},
+    {title: 'Users', url: '/users', icon: 'people', permissions: ['ADMIN']},
   ];
 
   user$: Observable<User>;

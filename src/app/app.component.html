@@ -8,7 +8,8 @@
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+          <ng-template ngFor let-p [ngForOf]="appPages">
+          <ion-menu-toggle auto-hide="false" *ngxPermissionsOnly="p.permissions">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
@@ -16,6 +17,7 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          </ng-template>
           <ion-menu-toggle auto-hide="false" *ngIf="user$ | async; else login">
             <ion-item button (click)="logout()">
               <ion-icon slot="start" name="log-out"></ion-icon>

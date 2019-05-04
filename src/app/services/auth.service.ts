@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { auth } from 'firebase/app';
-import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { flatMap, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { User } from '../models/user';
+import { NgxPermissionsService } from 'ngx-permissions';
 import GoogleAuthProvider = auth.GoogleAuthProvider;
 import AuthProvider = auth.AuthProvider;
 
@@ -28,7 +28,15 @@ export class AuthService {
   }
 
   constructor(private afAuth: AngularFireAuth,
-              private afs: AngularFirestore) {
+              private afs: AngularFirestore,
+              private permissionsSvc: NgxPermissionsService) {
+    this.user$.subscribe(user => {
+      if (user) {
+        permissionsSvc.loadPermissions([user.role]);
+      } else {
+        permissionsSvc.flushPermissions();
+      }
+    });
   }
 
   private oAuthLogin(provider: AuthProvider) {
@@ -38,7 +46,7 @@ export class AuthService {
         name: credentials.user.displayName,
         description: 'Speaker',
         photoUrl: credentials.user.photoURL,
-        role: 'speaker'
+        role: 'SPEAKER'
       });
     });
   }
