@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth.service';
@@ -23,7 +23,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authSvc: AuthService
+    private authSvc: AuthService,
+    private navCtrl: NavController
   ) {
     this.initializeApp();
     this.user$ = authSvc.user$;
@@ -36,9 +37,10 @@ export class AppComponent {
     });
   }
 
-  logout() {
+  async logout() {
     try {
-      this.authSvc.logout();
+      await this.authSvc.logout();
+      this.navCtrl.navigateRoot('/home');
     } catch (e) {
       console.log('e: ', e);
     }

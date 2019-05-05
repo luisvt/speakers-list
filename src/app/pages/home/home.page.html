@@ -27,16 +27,18 @@
       <ion-label>
         <h2>{{topic.title}}</h2>
         <p>{{topic.description}}</p>
-        <p>Votes: {{topic.positiveVotes?.length - topic.negativeVotes?.length}}</p>
+        <p>Total Score: {{topic.positiveVotes?.length - topic.negativeVotes?.length}}</p>
       </ion-label>
       <ion-buttons slot="end">
         <ion-button [color]="topic.positiveVotes && topic.positiveVotes.includes(user && user.uid) ? 'primary' : 'medium'"
                     (click)="votePositive(topic)">
           <ion-icon name="thumbs-up" size="large"></ion-icon>
+          <ion-text>{{topic.positiveVotes?.length}}</ion-text>
         </ion-button>
         <ion-button [color]="topic.negativeVotes && topic.negativeVotes.includes(user && user.uid) ? 'primary' : 'medium'"
                     (click)="voteNegative(topic)">
           <ion-icon name="thumbs-down" size="large"></ion-icon>
+          <ion-text>{{topic.negativeVotes?.length}}</ion-text>
         </ion-button>
       </ion-buttons>
     </ion-item>

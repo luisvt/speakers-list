@@ -43,8 +43,7 @@ service cloud.firestore {
       								&& isValidTopic(request.resource.data)
 
       allow update: if isSignedIn()
-      								&& isValidTopic(request.resource.data)
-                      && request.auth.uid == resource.data.createdBy
+      								&& isValidTopic(request.resource.data);
 
     }
 

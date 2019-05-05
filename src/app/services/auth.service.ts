@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { auth } from 'firebase/app';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { flatMap, map } from 'rxjs/operators';
+import { flatMap, map, take } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { User } from '../models/user';
 import { NgxPermissionsService } from 'ngx-permissions';
@@ -14,17 +14,18 @@ import AuthProvider = auth.AuthProvider;
 })
 export class AuthService {
 
-  get user$(): Observable<User> {
+  get user$(): Observable<any> {
     return this.afAuth.user.pipe(
-      flatMap(user =>
-        user && this.afs.doc<User>(`users/${user.uid}`).snapshotChanges()
-          .pipe(map(a => {
-              const item = a.payload.data();
-              item.uid = a.payload.id;
-              return item;
-            })
-          )
-        || of(null)));
+      flatMap(user => {
+        return user && this.afs.doc<User>(`users/${user.uid}`).snapshotChanges().pipe(
+          map(a => {
+            const item = a.payload.data();
+            item.uid = a.payload.id;
+            return item;
+          }),
+          take(1)
+        ) || of(null);
+      }));
   }
 
   constructor(private afAuth: AngularFireAuth,
@@ -39,8 +40,10 @@ export class AuthService {
     });
   }
 
-  private oAuthLogin(provider: AuthProvider) {
-    return this.afAuth.auth.signInWithPopup(provider).then(credentials => {
+  private async oAuthLogin(provider: AuthProvider) {
+    const credentials = await this.afAuth.auth.signInWithPopup(provider);
+    const user = await this.afs.doc<User>('/users/' + credentials.user.uid).valueChanges().pipe(take(1)).toPromise();
+    if (!user) {
       return this.afs.doc('/users/' + credentials.user.uid).set({
         email: credentials.user.email,
         name: credentials.user.displayName,
@@ -48,7 +51,7 @@ export class AuthService {
         photoUrl: credentials.user.photoURL,
         role: 'SPEAKER'
       });
-    });
+    }
   }
 
   signInWithGoogle() {
