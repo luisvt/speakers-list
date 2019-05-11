@@ -10,6 +10,12 @@ const routes: Routes = [
     canActivate: [NgxPermissionsGuard],
     data: {permissions: {only: ['ADMIN', 'SPEAKER'], redirectTo: '/home'}}
   },
+  {path: 'topic/:id', loadChildren: './pages/topic-detail/topic-detail.module#TopicDetailPageModule'},
+  {
+    path: 'edit-topic/:id', loadChildren: './pages/topic-form/topic-form.module#TopicFormPageModule',
+    canActivate: [NgxPermissionsGuard],
+    data: {permissions: {only: ['ADMIN', 'SPEAKER'], redirectTo: '/home'}}
+  },
   {path: 'login', loadChildren: './pages/login/login.module#LoginPageModule'},
   {path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule'},
   {

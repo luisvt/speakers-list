@@ -1,0 +1,20 @@
+<ng-template [ngIf]="topic$ | async" let-topic>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/home"></ion-back-button>
+      </ion-buttons>
+      <ion-title>{{topic.title}}</ion-title>
+      <ion-buttons slot="end" *ngIf="(user$ | async)?.uid === topic.createdBy">
+        <ion-button routerLink="/edit-topic/{{topic.uid}}">
+          <ion-icon name="create"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content padding>
+    <img [src]="topic.photoUrl" width="200">
+    <p>{{topic.description}}</p>
+  </ion-content>
+</ng-template>

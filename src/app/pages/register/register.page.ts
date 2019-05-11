@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -16,12 +17,13 @@ export class RegisterPage implements OnInit {
     confirmPassword: ''
   };
 
-  constructor() { }
+  constructor(private authSvc: AuthService) { }
 
   ngOnInit() {
   }
 
   register() {
     console.log('this.credentials: ', this.credentials);
+    this.authSvc.registerWithEmail(this.credentials);
   }
 }

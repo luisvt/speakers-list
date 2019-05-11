@@ -5,13 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegisterPage } from './register.page';
-import { ValidatorsModule } from 'ngx-validators';
+import { TopicDetailPage } from './topic-detail.page';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 const routes: Routes = [
   {
     path: '',
-    component: RegisterPage
+    component: TopicDetailPage
   }
 ];
 
@@ -21,8 +21,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ValidatorsModule
+    NgxPermissionsModule
   ],
-  declarations: [RegisterPage]
+  declarations: [TopicDetailPage]
 })
-export class RegisterPageModule {}
+export class TopicDetailPageModule {}

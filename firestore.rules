@@ -41,9 +41,15 @@ service cloud.firestore {
 
       allow create: if isSignedIn()
       								&& isValidTopic(request.resource.data)
+      								&& request.resource.data.createdBy == request.auth.uid
 
       allow update: if isSignedIn()
-      								&& isValidTopic(request.resource.data);
+      								&& isValidTopic(request.resource.data)
+      								&& (request.resource.data.createdBy == request.auth.uid
+                      		|| request.resource.data.createdBy == resource.data.createdBy
+                              && request.resource.data.title == resource.data.title
+                          		&& request.resource.data.photoUrl == resource.data.photoUrl
+                          		&& request.resource.data.description == resource.data.description)
 
     }
 

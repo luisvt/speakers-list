@@ -14,7 +14,7 @@ import AuthProvider = auth.AuthProvider;
 })
 export class AuthService {
 
-  get user$(): Observable<any> {
+  get user$(): Observable<User> {
     return this.afAuth.user.pipe(
       flatMap(user => {
         return user && this.afs.doc<User>(`users/${user.uid}`).snapshotChanges().pipe(
@@ -60,6 +60,17 @@ export class AuthService {
 
   signInWithEmail(email: string, password: string): Promise<any> {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  async registerWithEmail(credentials) {
+     const userCredentials = await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
+     return this.afs.doc('/users/' + userCredentials.user.uid).set({
+       email: credentials.email,
+       name: credentials.name,
+       description: credentials.description,
+       photoUrl: credentials.photoURL,
+       role: 'SPEAKER'
+     });
   }
 
   logout() {

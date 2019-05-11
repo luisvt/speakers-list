@@ -6,4 +6,5 @@ export interface Topic {
   description?: string;
   positiveVotes?: string[];
   negativeVotes?: string[];
+  createdBy?: string;
 }
