@@ -1,27 +1,25 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Propose Topic</ion-title>
-  </ion-toolbar>
-</ion-header>
+<mat-toolbar>
+  <matx-back-button defaultHref="/home"></matx-back-button>
+  <div class="col">Propose Topic</div>
+</mat-toolbar>
 
-<ion-content padding>
-  <form #form="ngForm" (submit)="save()" (keydown.enter)="save()">
-    <ion-item>
-      <ion-label position="floating">Title:</ion-label>
-      <ion-input name="title" [(ngModel)]="model.title" required minlength="1" maxlength="50"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Photo Url:</ion-label>
-      <ion-input name="photoUrl" [(ngModel)]="model.photoUrl"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Description:</ion-label>
-      <ion-textarea name="description"  [(ngModel)]="model.description" required rows="5" maxlength="120"></ion-textarea>
-    </ion-item>
+<section>
+  <form #form="ngForm" (submit)="save()" (keydown.enter)="save()" class="container mt-4">
+    <matx-input label="Title" name="title" #title="ngModel" [(ngModel)]="model.title" required minlength="1" maxlength="50">
+      <matx-errors [field]="title"></matx-errors>
+    </matx-input>
+    <matx-input label="Photo Url" name="photoUrl" #photoUrl="ngModel" [(ngModel)]="model.photoUrl"><
+      <matx-errors [field]="photoUrl"></matx-errors>
+    </matx-input>
+    <mat-form-field class="w-100">
+      <textarea matInput placeholder="Description" name="description" #description="ngModel" [(ngModel)]="model.description"
+                required rows="5" maxlength="120"><
+      </textarea>
+      <mat-error>
+        <matx-errors [field]="description"></matx-errors>
+      </mat-error>
+    </mat-form-field>
 
-    <ion-button type="submit" expand="block" margin-top [disabled]="form.invalid">Save</ion-button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
   </form>
-</ion-content>
+</section>

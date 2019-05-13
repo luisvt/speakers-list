@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { ToastController } from '@ionic/angular';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
   };
 
   constructor(private router: Router,
-              private toastCtrl: ToastController,
+              private snackBar: MatSnackBar,
               private authService: AuthService) { }
 
   ngOnInit() {
@@ -26,12 +26,11 @@ export class LoginPage implements OnInit {
     try {
       await this.authService.signInWithEmail(this.credentials.email, this.credentials.password);
     } catch (err) {
-      (await this.toastCtrl.create({
-        message: err.message,
-        color: 'danger',
-        position: 'top',
+      this.snackBar.open(err.message, 'Ok', {
+        panelClass: 'mat-warn',
+        verticalPosition: 'top',
         duration: 5000
-      })).present();
+      });
     }
   }
 
@@ -40,12 +39,11 @@ export class LoginPage implements OnInit {
       await this.authService.signInWithGoogle();
       this.router.navigate(['']);
     } catch (err) {
-      (await this.toastCtrl.create({
-        message: err.message,
-        color: 'danger',
-        position: 'middle',
+      this.snackBar.open(err.message, 'Ok', {
+        panelClass: 'mat-warn',
+        verticalPosition: 'top',
         duration: 5000
-      })).present();
+      });
     }
   }
 

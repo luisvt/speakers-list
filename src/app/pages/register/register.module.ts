@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { IonicModule } from '@ionic/angular';
-
 import { RegisterPage } from './register.page';
 import { ValidatorsModule } from 'ngx-validators';
+import { MatxModule } from 'angular-material-extended';
+import { MatButtonModule, MatToolbarModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -19,9 +19,11 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
     RouterModule.forChild(routes),
-    ValidatorsModule
+    ValidatorsModule,
+    MatxModule,
+    MatButtonModule,
+    MatToolbarModule
   ],
   declarations: [RegisterPage]
 })

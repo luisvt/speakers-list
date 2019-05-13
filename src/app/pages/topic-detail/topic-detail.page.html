@@ -1,20 +1,16 @@
 <ng-template [ngIf]="topic$ | async" let-topic>
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/home"></ion-back-button>
-      </ion-buttons>
-      <ion-title>{{topic.title}}</ion-title>
-      <ion-buttons slot="end" *ngIf="(user$ | async)?.uid === topic.createdBy">
-        <ion-button routerLink="/edit-topic/{{topic.uid}}">
-          <ion-icon name="create"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+    <mat-toolbar>
+        <matx-back-button></matx-back-button>
+      <div class="col">{{topic.title}}</div>
+      <button mat-icon-button *ngIf="(user$ | async)?.uid === topic.createdBy" routerLink="/edit-topic/{{topic.uid}}">
+          <mat-icon>create</mat-icon>
+      </button>
+    </mat-toolbar>
 
-  <ion-content padding>
-    <img [src]="topic.photoUrl" width="200">
-    <p>{{topic.description}}</p>
-  </ion-content>
+  <section>
+    <div class="container">
+      <img [src]="topic.photoUrl" width="200">
+      <p>{{topic.description}}</p>
+    </div>
+  </section>
 </ng-template>

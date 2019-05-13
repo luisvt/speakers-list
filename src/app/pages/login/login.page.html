@@ -1,27 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<mat-toolbar>
+  <matx-menu-button></matx-menu-button>
+  <div class="col">Login</div>
+</mat-toolbar>
 
-<ion-content padding>
-  <form #form="ngForm" (submit)="login()" (keydown.enter)="login()">
-    <ion-item>
-      <ion-label position="floating">Email:</ion-label>
-      <ion-input name="email" [(ngModel)]="credentials.email" required email></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Password:</ion-label>
-      <ion-input type="password" name="password" [(ngModel)]="credentials.password" required minlength="6"></ion-input>
-    </ion-item>
+<section>
+  <form #form="ngForm" (submit)="login()" class="container mt-4">
+    <matx-input label="Email" name="email" #email="ngModel" [(ngModel)]="credentials.email" required email>
+      <matx-errors [field]="email"></matx-errors>
+    </matx-input>
+    <matx-input type="password" label="password" name="password" #password="ngModel" [(ngModel)]="credentials.password" required>
+      <matx-errors [field]="password"></matx-errors>
+    </matx-input>
 
-    <ion-button type="submit" expand="block" margin-top [disabled]="form.invalid">Login</ion-button>
-    <ion-button expand="block" margin-top color="tertiary" (click)="loginWithGoogle()">
-      <ion-icon name="logo-google" slot="start"></ion-icon>Login with Google
-    </ion-button>
-    <ion-button expand="block" fill="outline" margin-top routerLink="/register">Register</ion-button>
+    <button mat-raised-button color="primary" [disabled]="form.invalid">Login</button>
+    <button mat-raised-button type="button" (click)="loginWithGoogle()">
+      <mat-icon>logo_google</mat-icon>
+      Login with Google
+    </button>
+    <button mat-stroked-button type="button" routerLink="/register">Register</button>
   </form>
-</ion-content>
+</section>

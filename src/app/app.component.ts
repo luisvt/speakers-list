@@ -1,46 +1,54 @@
-import { Component } from '@angular/core';
-
-import { NavController, Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { AuthService } from './services/auth.service';
-import { Observable } from 'rxjs';
-import { User } from './models/user';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { Subscription } from 'rxjs';
+import { MatxSidenavMenuController } from 'angular-material-extended';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html'
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   appPages = [
     {title: 'Home', url: '/home', icon: 'home'},
     {title: 'Users', url: '/users', icon: 'people', permissions: ['ADMIN']},
   ];
 
-  user$: Observable<User>;
+  loggedIn: boolean;
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private authSvc: AuthService,
-    private navCtrl: NavController
-  ) {
-    this.initializeApp();
-    this.user$ = authSvc.user$;
+  private readonly mobileQuery: MediaQueryList;
+
+  private readonly mobileQueryListener: () => void;
+
+  private readonly subscription: Subscription;
+
+  constructor(public authSvc: AuthService,
+              changeDetectorRef: ChangeDetectorRef,
+              media: MediaMatcher,
+              public sideNavCtrl: MatxSidenavMenuController,
+              private router: Router) {
+    this.mobileQuery = media.matchMedia('(max-width: 992px)');
+    sideNavCtrl.isMobile = this.mobileQuery.matches;
+    this.mobileQueryListener = () => {
+      sideNavCtrl.isMobile = this.mobileQuery.matches;
+      sideNavCtrl.opened = !sideNavCtrl.isMobile;
+      changeDetectorRef.detectChanges();
+    };
+    this.mobileQuery.addListener(this.mobileQueryListener);
+    this.subscription = authSvc.user$.subscribe(user => this.loggedIn = !!user);
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this.mobileQueryListener);
+    this.subscription.unsubscribe();
   }
 
   async logout() {
     try {
       await this.authSvc.logout();
-      this.navCtrl.navigateRoot('/home');
+      this.router.navigateByUrl('/home');
     } catch (e) {
       console.log('e: ', e);
     }

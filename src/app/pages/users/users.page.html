@@ -1,23 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Users</ion-title>
-  </ion-toolbar>
-</ion-header>
+<mat-toolbar>
+  <matx-menu-button></matx-menu-button>
+  <div class="col">Users</div>
+</mat-toolbar>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let user of users$ | async">
-      <ion-avatar slot="start">
-        <img [src]="user.photoUrl || 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
-      </ion-avatar>
-      <ion-label>
-        <h1>{{user.name}}</h1>
-        <h2>{{user.description}}</h2>
-        <p>{{user.email}}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-</ion-content>
+<section>
+  <mat-list>
+    <mat-list-item *ngFor="let user of users$ | async">
+      <img matListAvatar [src]="user.photoUrl || 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
+      <h1 matLine>{{user.name}}</h1>
+      <h2 matLine>{{user.description}}</h2>
+      <p matLine>{{user.email}}</p>
+    </mat-list-item>
+  </mat-list>
+</section>

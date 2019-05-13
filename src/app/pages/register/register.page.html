@@ -1,41 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<mat-toolbar>
+    <matx-back-button></matx-back-button>
+    <div class="col">Register</div>
+</mat-toolbar>
 
-<ion-content padding>
+<section>
+  <form (submit)="register()" (keydown.enter)="register()" class="container">
+    <matx-input label="Name" name="name" #name="ngModel" [(ngModel)]="credentials.name" required autocomplete="name">
+      <matx-errors [field]="name"></matx-errors>
+    </matx-input>
+    <matx-input label="Description" name="description" #description="ngModel" [(ngModel)]="credentials.description" required>
+      <matx-errors [field]="description"></matx-errors>
+    </matx-input>
+    <matx-input label="Email" name="email" #email="ngModel" [(ngModel)]="credentials.email" required email>
+      <matx-errors [field]="email"></matx-errors>
+    </matx-input>
+    <matx-input label="Confirm Email" name="confirmEmail" #confirmEmail="ngModel" [(ngModel)]="credentials.confirmEmail" required equalTo="email">
+      <matx-errors [field]="confirmEmail"></matx-errors>
+    </matx-input>
+    <matx-input label="Password" type="password" name="password" #password="ngModel" [(ngModel)]="credentials.password" required minlength="6">
+      <matx-errors [field]="password"></matx-errors>
+    </matx-input>
+    <matx-input label="Confirm Password" type="password" name="confirmPassword" #confirmPassword="ngModel" [(ngModel)]="credentials.confirmPassword"
+                required minlength="6" equalTo="password">
+      <matx-errors [field]="confirmPassword"></matx-errors>
+    </matx-input>
 
-  <form (submit)="register()" (keydown.enter)="register()">
-    <ion-item>
-      <ion-label position="floating">Name:</ion-label>
-      <ion-input name="name" [(ngModel)]="credentials.name" required autocomplete="name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Description:</ion-label>
-      <ion-input name="description" [(ngModel)]="credentials.description" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Email:</ion-label>
-      <ion-input name="email" [(ngModel)]="credentials.email" required email></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Confirm Email:</ion-label>
-      <ion-input name="confirmEmail" [(ngModel)]="credentials.confirmEmail" required equalTo="email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Password:</ion-label>
-      <ion-input type="password" name="password" [(ngModel)]="credentials.password" required minlength="6"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Confirm Password:</ion-label>
-      <ion-input type="password" name="confirmPassword" [(ngModel)]="credentials.confirmPassword" required minlength="6"
-                 equalTo="password"></ion-input>
-    </ion-item>
-
-    <ion-button type="submit" margin-top margin>Register</ion-button>
+    <button mat-raised-button type="submit" margin-top margin color="primary">Register</button>
   </form>
-</ion-content>
+</section>

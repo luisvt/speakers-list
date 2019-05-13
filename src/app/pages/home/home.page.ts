@@ -4,7 +4,8 @@ import { TopicsService } from '../../services/topics.service';
 import { Topic } from '../../models/topic';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
-import { AlertController, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { MatxPromptController } from 'angular-material-extended';
 
 @Component({
   selector: 'app-home',
@@ -20,8 +21,8 @@ export class HomePage implements OnDestroy {
 
   constructor(private topicsSvc: TopicsService,
               private authSvc: AuthService,
-              private alertCtrl: AlertController,
-              private navCtrl: NavController) {
+              private promptCtrl: MatxPromptController,
+              private router: Router) {
     this.topics$ = topicsSvc.findAll();
     this.subscription = authSvc.user$.subscribe(user => this.user = user);
   }
@@ -31,16 +32,16 @@ export class HomePage implements OnDestroy {
   }
 
   private async showLoginAlert() {
-    (await this.alertCtrl.create({
+    await this.promptCtrl.prompt({
       message: 'You need to login to vote',
-      buttons: [
+      actions: [
         'Cancel',
         {
           text: 'Login',
-          handler: () => this.navCtrl.navigateRoot('/login')
+          callback: () => this.router.navigateByUrl('/login')
         }
       ]
-    })).present();
+    });
   }
 
   async votePositive(topic: Topic) {
