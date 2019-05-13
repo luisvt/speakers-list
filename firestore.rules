@@ -21,12 +21,12 @@ service cloud.firestore {
   	match /users/{userId} {
   		allow read: if isSignedIn() && userId == request.auth.uid
       allow update: if isSignedIn()
-      								&& user == request.auth.uid
+      								&& userId == request.auth.uid
                       && request.resource.data.email == resource.data.email
                       && request.resource.data.role == resource.data.role;
 
 			allow create: if isSignedIn()
-      								 && user == request.auth.uid
+      								 && userId == request.auth.uid
                        && request.resource.data.role == 'SPEAKER'
                        && request.auth.token.email == request.resource.data.email;
   	}

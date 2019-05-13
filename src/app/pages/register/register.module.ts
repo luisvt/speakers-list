@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterPage } from './register.page';
 import { ValidatorsModule } from 'ngx-validators';
 import { MatxModule } from 'angular-material-extended';
-import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatSnackBarModule, MatToolbarModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -23,7 +23,8 @@ const routes: Routes = [
     ValidatorsModule,
     MatxModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSnackBarModule
   ],
   declarations: [RegisterPage]
 })

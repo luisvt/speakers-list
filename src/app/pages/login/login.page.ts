@@ -25,6 +25,7 @@ export class LoginPage implements OnInit {
   async login() {
     try {
       await this.authService.signInWithEmail(this.credentials.email, this.credentials.password);
+      this.router.navigateByUrl('/');
     } catch (err) {
       this.snackBar.open(err.message, 'Ok', {
         panelClass: 'mat-warn',

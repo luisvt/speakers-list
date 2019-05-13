@@ -68,7 +68,7 @@ export class AuthService {
        email: credentials.email,
        name: credentials.name,
        description: credentials.description,
-       photoUrl: credentials.photoURL,
+       // photoUrl: credentials.photoURL,
        role: 'SPEAKER'
      });
   }

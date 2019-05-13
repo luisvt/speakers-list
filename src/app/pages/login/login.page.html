@@ -12,11 +12,19 @@
       <matx-errors [field]="password"></matx-errors>
     </matx-input>
 
-    <button mat-raised-button color="primary" [disabled]="form.invalid">Login</button>
-    <button mat-raised-button type="button" (click)="loginWithGoogle()">
-      <mat-icon>logo_google</mat-icon>
-      Login with Google
-    </button>
-    <button mat-stroked-button type="button" routerLink="/register">Register</button>
+    <div class="row">
+      <div class="col-sm-4">
+        <button mat-raised-button color="primary" [disabled]="form.invalid" class="w-100">Login</button>
+      </div>
+      <div class="col-sm-4">
+        <button mat-raised-button type="button" (click)="loginWithGoogle()" class="w-100">
+          <mat-icon>logo_google</mat-icon>
+          Login with Google
+        </button>
+      </div>
+      <div class="col-sm-4">
+        <button mat-stroked-button type="button" routerLink="/register" class="w-100">Register</button>
+      </div>
+    </div>
   </form>
 </section>
