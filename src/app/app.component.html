@@ -2,7 +2,7 @@
   <mat-sidenav [mode]="sideNavCtrl.isMobile ? 'over' : 'side'"
                [opened]="(!sideNavCtrl.isMobile || sideNavCtrl.opened)"
                (openedChange)="sideNavCtrl.opened = $event">
-    <mat-toolbar>Affiliate</mat-toolbar>
+    <mat-toolbar>CFTL Speakers List</mat-toolbar>
     <mat-nav-list>
       <ng-template ngFor let-page [ngForOf]="appPages">
         <a *ngxPermissionsOnly="page.permissions" mat-list-item [routerLink]="page.url" routerLinkActive="active"
